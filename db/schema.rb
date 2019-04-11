@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2019_04_11_200040) do
 
   create_table "albums", force: :cascade do |t|
     t.integer "title"
-    t.integer "rating"
+    t.integer "rating", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2019_04_11_200040) do
   create_table "songs", force: :cascade do |t|
     t.string "title"
     t.integer "duration"
-    t.integer "rating"
-    t.integer "progress"
+    t.integer "rating", default: 0
+    t.integer "progress", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

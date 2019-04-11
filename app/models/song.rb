@@ -1,5 +1,4 @@
 class Song < ApplicationRecord
-  has_many :associations
-  has_many :artists, through: :associations
-  has_many :albums, through: :associations 
+  has_and_belongs_to_many :albums, join_table: 'associations'
+  has_and_belongs_to_many :artists, join_table: 'associations'
 end
