@@ -1,1 +1,8 @@
-# rails-apple-music-clone
+# Rails Apple Music Clone
+
+## Team
+
+- Paulo
+- Lian
+- Frank
+- Mayra
