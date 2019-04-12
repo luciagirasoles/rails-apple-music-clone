@@ -1,0 +1,25 @@
+<div>
+  <h2>List Artists</h2>
+  <%= link_to 'New artist', new_admin_artist_path %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @artists.each do |artist|%>
+        <tr>
+          <td><%= artist.name %></td>
+          <td><%= artist.age %></td>
+          <td>
+            <%= link_to 'Edit', edit_admin_artist_path(artist) %>
+            <%= link_to 'Destroy', admin_artist_path(artist), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
