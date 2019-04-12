@@ -6,11 +6,11 @@ Rails.application.routes.draw do
       get 'search', on: :collection
     end
     resources :artists, only: [:index, :show] do
-      get ':resource', to: 'artists#index'
+      get ':resource', to: 'artists#show'
       get 'search', on: :collection
     end
     resources :albums, only: [:index,:show]  do
-      get ':resource', to: 'albums#index'
+      get ':resource', to: 'albums#show'
       get 'search', on: :collection
     end
   end
