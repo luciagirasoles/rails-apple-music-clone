@@ -14,4 +14,8 @@ Rails.application.routes.draw do
       get 'search', on: :collection
     end
   end
+  
+  namespace :admin do
+    resources :songs
+  end
 end
