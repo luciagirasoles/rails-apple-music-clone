@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  font-family: monospace, Helvetica, sans-serif;
+  letter-spacing: 0.75px;
+}
+
+a {
+  color: #067df7;
+  text-decoration: none;
+}
+
+nav {
+  font-size: 14px;
+  a {
+    border-bottom: 1px solid #453886;
+    padding-bottom: 0.25em;
+    text-decoration: none;
+  }
+}
+
+.navbar {
+  display: flex;
+  padding: 10px 30px;
+  align-items: center;
+  justify-content: space-between;
+  a {
+    margin-right: 5px;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.actions {
+  margin: 1em 0;
+}
+
+.field {
+  margin-top: 1em;
+  input {
+    padding: 3px 7.5px;
+  }
+}
+
+.flash-notice {
+  background: #fdf;
+  padding: 8px;
+  margin-right: -8px;
+}
+
+table {
+  width: 100%;
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+table td,
+table th {
+  border: 1px solid #dbdbdb;
+  border-width: 0 0 1px;
+  padding: 0.5em 0.75em;
+  vertical-align: center;
+  text-align: center;
+}
