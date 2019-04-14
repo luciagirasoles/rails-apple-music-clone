@@ -16,8 +16,12 @@ Rails.application.routes.draw do
   end
   
   namespace :admin do
+    root 'home#index'
     resources :songs
     resources :artists
-    resources :albums
+    resources :albums do
+      get "add_record", on: :member
+      patch "save_record", on: :member
+    end
   end
 end

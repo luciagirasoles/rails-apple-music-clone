@@ -4,4 +4,7 @@ class Album < ApplicationRecord
   
   validates :title, presence: true
   validates :rating, presence: false
+
+  accepts_nested_attributes_for :songs
+  accepts_nested_attributes_for :artists
 end

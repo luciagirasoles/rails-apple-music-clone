@@ -9,6 +9,10 @@ a {
   text-decoration: none;
 }
 
+a[data-method='delete']:hover {
+  color: tomato;
+}
+
 nav {
   font-size: 14px;
   a {
@@ -39,6 +43,10 @@ nav {
 
 .field {
   margin-top: 1em;
+  label {
+    min-width: 120px;
+    display: inline-block;
+  }
   input {
     padding: 3px 7.5px;
   }
@@ -48,6 +56,10 @@ nav {
   background: #fdf;
   padding: 8px;
   margin-right: -8px;
+}
+
+.small-text {
+  font-size: 14px;
 }
 
 table {

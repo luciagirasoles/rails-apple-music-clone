@@ -7,10 +7,11 @@
   <% @albums.each do |album| %>
     <div>
       <h4><%= album.title %></h4>
+      <%= link_to '+ Add artist with song', add_record_admin_album_path(album), class: "small-text" %>
       <ul>
         <% album.songs.each do |song| %>
           <li>
-            <%= link_to song.title, admin_song_path(song) %> - 
+            <%= song.title %> - 
             <%= song.artists.map(&:name).join(", ") %></li>
         <% end %>
       </ul>
