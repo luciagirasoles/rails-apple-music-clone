@@ -10,6 +10,19 @@
   </head>
 
   <body>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <div>
+      <% if current_user %>
+        Has iniciado sesión como <strong><%= current_user.email %></strong>!
+        <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Iniciar sesión', new_user_session_path %>
+      <% end %>
+    </div>
+
     <%= render '/partials/nav' %>
     <div class="container">
       <% if flash[:notice] %>

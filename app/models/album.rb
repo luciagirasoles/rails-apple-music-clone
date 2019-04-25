@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: albums
+#
+#  id         :bigint(8)        not null, primary key
+#  rating     :integer          default(0)
+#  title      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Album < ApplicationRecord
   has_and_belongs_to_many :songs, join_table: 'associations'
   has_and_belongs_to_many :artists, join_table: 'associations'

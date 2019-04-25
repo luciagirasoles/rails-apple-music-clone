@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
+  root to: "admin/home#index"
+
   namespace :api do
     resources :songs, only: [:index, :show] do
       get ':resource', to: 'songs#index'
