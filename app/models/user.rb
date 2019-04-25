@@ -23,5 +23,17 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
   validates :role, inclusion: { in: %w(user admin)}
+
+  devise :omniauthable, omniauth_providers: %i[facebook github]
+
+  def self.from_omniauth(auth)
+    puts auth.to_json
+    where(email: auth.info.email).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+    end
+  end
+
 end
