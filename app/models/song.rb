@@ -21,6 +21,7 @@ class Song < ApplicationRecord
   validates :progress, presence: false
   validate :progress_must_less_than_duration
   
+  has_one_attached :cover
   # Requirement: The progress could not be bigger than the duration.
   def progress_must_less_than_duration
     if (self.progress > self.duration)

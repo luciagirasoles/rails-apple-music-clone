@@ -2,5 +2,8 @@
 <div>
   <p><b>Name:</b> <%= @artist.name %></p>
   <p><b>Age:</b> <%= @artist.age %></p>
+  <% if @artist.cover.attached? %>
+    <%= image_tag @artist.cover.variant(resize: "300x300") %>
+  <% end %>
 </div>
 <%= link_to 'Back', admin_artists_path %>
