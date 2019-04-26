@@ -24,9 +24,8 @@ album4 = Album.create(title: "Album Taylor", rating: 3)
 album4.songs << song4
 album4.artists << artist4
 
-user1 = User.create(email: "diegotc86+1@gmail.com", password: "123456")
-user2 = User.create(email: "iamdeyvi+1@gmail.com", password: "123456")
-user3 = User.create(email: "calaya.w+1@gmail.com", password: "123456")
-user4 = User.create(email: "cesarcachay1996+1@gmail.com", password: "123456")
-user5 = User.create(email: "christoph.roa+1@gmail.com", password: "123456")
-user3.role = "admin"
+User.create(email: "diegotc86+1@gmail.com", password: "123456")
+User.create(email: "iamdeyvi+1@gmail.com", password: "123456")
+User.create(email: "cayala.w+1@gmail.com", password: "123456")
+User.create(email: "cesarcachay1996+1@gmail.com", password: "123456", role: "admin")
+User.create(email: "christoph.roa+1@gmail.com", password: "123456")
