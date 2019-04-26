@@ -27,6 +27,7 @@ class User < ApplicationRecord
   validates :role, inclusion: { in: %w(user admin)}
 
   devise :omniauthable, omniauth_providers: %i[facebook github]
+  has_many :songs
 
   def self.from_omniauth(auth)
     puts auth.to_json
@@ -34,6 +35,10 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
     end
+  end
+
+  def admin? 
+    self.role == "admin"
   end
 
 end

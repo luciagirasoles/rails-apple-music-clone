@@ -1,0 +1,29 @@
+<div>
+  <h2>Hello this is your list of songs</h2>
+  <%= link_to 'New song', regulars_path %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Duration</th>
+      <th>Rating</th>
+      <th>Progress</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @songs.each do |song|%>
+        <tr>
+          <td><%= song.title %></td>
+          <td><%= song.duration %></td>
+          <td><%= song.rating %></td>
+          <td><%= song.progress %></td>
+          <td>
+          </td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
+
+

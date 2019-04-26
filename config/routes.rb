@@ -28,4 +28,6 @@ Rails.application.routes.draw do
       patch "save_record", on: :member
     end
   end
+
+  resources :regulars
 end

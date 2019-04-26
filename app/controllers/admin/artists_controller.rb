@@ -4,10 +4,12 @@ class Admin::ArtistsController < ApplicationController
 
   def index
     @artists = Artist.all
+    authorize @artists
   end
 
   def new
     @artist = Artist.new
+    authorize @artist
   end
 
   def edit
@@ -20,6 +22,7 @@ class Admin::ArtistsController < ApplicationController
     @artist = Artist.new(artists_params)
     if @artist.save
       redirect_to admin_artist_path(@artist), notice: 'artist was successfully created.'
+      render :show, status: :created, location: @artist 
     else
       render :new
     end
@@ -28,7 +31,9 @@ class Admin::ArtistsController < ApplicationController
   def update
     if @artist.update(artists_params)
       redirect_to admin_artist_path(@artist), notice: 'artist was successfully updated.'
+      render :show, status: :ok, location: @artist
     else
+      flash[:notice] = "This specific artist is not yours!"
       render :edit
     end
   end
@@ -42,6 +47,7 @@ class Admin::ArtistsController < ApplicationController
   private
   def set_artist
     @artist = Artist.find(params[:id])
+    authorize @artist
   end
 
   def artists_params

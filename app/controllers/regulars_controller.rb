@@ -1,14 +1,13 @@
-class Admin::SongsController < ApplicationController
-  before_action :set_songs, only: [:show, :edit, :update, :destroy]
+class RegularsController < ApplicationController
 
   def index
-    @songs = Song.all
-    authorize @songs
+    @songs = current_user.songs
+    @artists = Artist.all 
+    @albums = Album.all  
   end
 
   def new
-    @song = Song.new
-    authorize @song
+    @song = current_user.new
   end
 
   def edit
@@ -22,7 +21,6 @@ class Admin::SongsController < ApplicationController
     @song = Song.new(song_params)
     if @song.save
       redirect_to admin_song_path(@song), notice: 'song was successfully created.'
-      render :show, status: :created, location: @song 
     else
       render :new
     end
@@ -34,7 +32,6 @@ class Admin::SongsController < ApplicationController
       redirect_to admin_song_path(@song), notice: 'song was successfully updated.'
       render :show, status: :ok, location: @song
     else
-      flash[:notice] = "This is not your song!"
       render :edit
     end
   end
@@ -47,7 +44,6 @@ class Admin::SongsController < ApplicationController
   private
   def set_songs
     @song = Song.find(params[:id])
-    authorize @song
   end
 
   def song_params

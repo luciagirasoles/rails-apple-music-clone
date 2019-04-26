@@ -3,10 +3,12 @@ class Admin::AlbumsController < ApplicationController
 
   def index
     @albums = Album.all
+    authorize @albums
   end
 
   def new
     @album = Album.new
+    authorize @album
   end
 
   def edit
@@ -40,7 +42,9 @@ class Admin::AlbumsController < ApplicationController
     @album = Album.find(params[:id])
     if @album.update(albums_params)
       redirect_to admin_album_path(@album), notice: 'Album was successfully updated.'
+      render :show, status: :ok, location: @song
     else
+      flash[:notice] = "This album doesn't belong to you!"
       render :edit
     end
   end
@@ -53,6 +57,7 @@ class Admin::AlbumsController < ApplicationController
   private
   def set_albums
     @album = Album.find(params[:id])
+    authorize @album
   end
 
   def albums_params

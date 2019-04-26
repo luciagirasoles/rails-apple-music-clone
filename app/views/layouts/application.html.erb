@@ -11,8 +11,7 @@
 
   <body>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <!--<p class="alert"><%= alert %></p>-->
 
     <div>
       <% if current_user %>
@@ -30,6 +29,11 @@
     <div class="container">
       <% if flash[:notice] %>
         <p class="flash-notice"><%= flash[:notice] %></p>
+      <% end %>
+    </div>
+    <div class="container">
+      <% if flash[:alert] %>
+        <p class="flash-notice"><%= flash[:alert] %></p>
       <% end %>
       <%= yield %>
     </div>
