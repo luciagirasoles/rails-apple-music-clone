@@ -28,6 +28,8 @@ class User < ApplicationRecord
 
   devise :omniauthable, omniauth_providers: %i[facebook github]
   has_many :songs
+  has_many :albums
+  has_many :artists  
 
   def self.from_omniauth(auth)
     puts auth.to_json

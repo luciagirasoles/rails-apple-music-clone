@@ -12,6 +12,7 @@ class Admin::SongsController < ApplicationController
   end
 
   def edit
+    authorize @song    
   end
   
   def show
@@ -19,20 +20,20 @@ class Admin::SongsController < ApplicationController
 
   
   def create
+    authorize @song
     @song = Song.new(song_params)
     if @song.save
       redirect_to admin_song_path(@song), notice: 'song was successfully created.'
-      render :show, status: :created, location: @song 
     else
       render :new
     end
   end
 
   def update
+    authorize @song
     @song = Song.find(params[:id])
     if @song.update(song_params)
       redirect_to admin_song_path(@song), notice: 'song was successfully updated.'
-      render :show, status: :ok, location: @song
     else
       flash[:notice] = "This is not your song!"
       render :edit
@@ -40,6 +41,7 @@ class Admin::SongsController < ApplicationController
   end
 
   def destroy
+    authorize @song
     @song.destroy
     redirect_to admin_songs_path, notice: 'song was successfully destroyed.'
   end
@@ -47,7 +49,6 @@ class Admin::SongsController < ApplicationController
   private
   def set_songs
     @song = Song.find(params[:id])
-    authorize @song
   end
 
   def song_params
