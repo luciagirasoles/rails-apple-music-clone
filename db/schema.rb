@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_26_150311) do
+ActiveRecord::Schema.define(version: 2019_04_27_002130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 2019_04_26_150311) do
     t.integer "rating", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_albums_on_user_id"
   end
 
   create_table "artists", force: :cascade do |t|
@@ -48,6 +50,8 @@ ActiveRecord::Schema.define(version: 2019_04_26_150311) do
     t.string "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_artists_on_user_id"
   end
 
   create_table "associations", force: :cascade do |t|
@@ -93,6 +97,8 @@ ActiveRecord::Schema.define(version: 2019_04_26_150311) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "albums", "users"
+  add_foreign_key "artists", "users"
   add_foreign_key "associations", "albums"
   add_foreign_key "associations", "artists"
   add_foreign_key "associations", "songs"

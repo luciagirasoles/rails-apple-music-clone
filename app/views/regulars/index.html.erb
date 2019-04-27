@@ -1,6 +1,6 @@
 <div>
-  <h2>Hello this is your list of songs</h2>
-  <%= link_to 'New song', regulars_path %>
+<h1> Hello <%=current_user.email%>!</h1>
+<h2>This is your list of songs</h2>
 </div>
 
 <table>
@@ -26,4 +26,55 @@
   </tbody>
 </table>
 
+<div>
+  <h1> Hello <%=current_user.email%>!</h1>
+  <h2>This is your list of Artists</h2>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @artists.each do |artist|%>
+        <tr>
+          <td><%= artist.name %></td>
+          <td><%= artist.age %></td>
+          <td>
+            <%= link_to 'Edit', edit_admin_artist_path(artist) %>
+            <%= link_to 'Destroy', admin_artist_path(artist), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
+
+<div>
+  <h1> Hello <%=current_user.email%>!</h1>
+  <h2>This is your list of albums</h2>
+</div>
+<br>
+<div>
+  <% @albums.each do |album| %>
+    <div>
+      <h4><%= album.title %></h4>
+      <%= link_to '+ Add artist with song', add_record_admin_album_path(album), class: "small-text" %>
+      <ul>
+        <% album.songs.each do |song| %>
+          <li>
+            <%= song.title %> - 
+            <%= song.artists.map(&:name).join(", ") %></li>
+        <% end %>
+      </ul>
+      <div class="actions">
+        <%= link_to 'Edit', edit_admin_album_path(album) %>
+        <%= link_to 'Destroy', admin_album_path(album), method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+  <% end %>
+</div>
 

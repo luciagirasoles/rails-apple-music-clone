@@ -12,6 +12,7 @@ class Admin::AlbumsController < ApplicationController
   end
 
   def edit
+    authorize @album
   end
   
   def show
@@ -21,6 +22,7 @@ class Admin::AlbumsController < ApplicationController
   end
 
   def save_record
+    authorize @album
     @artist = Artist.find(params[:album][:artist_ids])
     @song = Song.find(params[:album][:song_ids])
     @album.songs << @song
@@ -30,6 +32,7 @@ class Admin::AlbumsController < ApplicationController
   end
   
   def create
+    authorize @album
     @album = Album.new(albums_params)
     if @album.save
       redirect_to admin_album_path(@album), notice: 'Album was successfully created.'
@@ -39,10 +42,10 @@ class Admin::AlbumsController < ApplicationController
   end
 
   def update
+    authorize @album
     @album = Album.find(params[:id])
     if @album.update(albums_params)
       redirect_to admin_album_path(@album), notice: 'Album was successfully updated.'
-      render :show, status: :ok, location: @song
     else
       flash[:notice] = "This album doesn't belong to you!"
       render :edit
@@ -50,6 +53,7 @@ class Admin::AlbumsController < ApplicationController
   end
 
   def destroy
+    authorize @album
     @album.destroy
     redirect_to admin_albums_path, notice: 'Album was successfully destroyed.'
   end
@@ -57,7 +61,6 @@ class Admin::AlbumsController < ApplicationController
   private
   def set_albums
     @album = Album.find(params[:id])
-    authorize @album
   end
 
   def albums_params

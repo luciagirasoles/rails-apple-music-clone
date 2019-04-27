@@ -19,19 +19,19 @@ class Admin::ArtistsController < ApplicationController
   end
 
   def create
+    authorize @artist
     @artist = Artist.new(artists_params)
     if @artist.save
       redirect_to admin_artist_path(@artist), notice: 'artist was successfully created.'
-      render :show, status: :created, location: @artist 
     else
       render :new
     end
   end
 
   def update
+    authorize @artist
     if @artist.update(artists_params)
       redirect_to admin_artist_path(@artist), notice: 'artist was successfully updated.'
-      render :show, status: :ok, location: @artist
     else
       flash[:notice] = "This specific artist is not yours!"
       render :edit
@@ -40,6 +40,7 @@ class Admin::ArtistsController < ApplicationController
 
  
   def destroy
+    authorize @artist
     @artist.destroy
     redirect_to admin_artists_path, notice: 'artist was successfully destroyed.'
   end
@@ -47,7 +48,6 @@ class Admin::ArtistsController < ApplicationController
   private
   def set_artist
     @artist = Artist.find(params[:id])
-    authorize @artist
   end
 
   def artists_params
