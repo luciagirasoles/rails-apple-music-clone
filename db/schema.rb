@@ -72,6 +72,15 @@ ActiveRecord::Schema.define(version: 2019_04_27_002130) do
     t.index ["user_id"], name: "index_providers_on_user_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.string "ratingable_type"
+    t.integer "ratingable_id"
+    t.integer "user_id"
+    t.integer "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "songs", force: :cascade do |t|
     t.string "title"
     t.integer "duration"
@@ -96,7 +105,6 @@ ActiveRecord::Schema.define(version: 2019_04_27_002130) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "albums", "users"
   add_foreign_key "artists", "users"
   add_foreign_key "associations", "albums"

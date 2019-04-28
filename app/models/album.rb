@@ -30,6 +30,8 @@ class Album < ApplicationRecord
   accepts_nested_attributes_for :artists
 
   has_one_attached :cover
+  has_many :ratings, as: :ratingable
+  
   def self.search(search_title)
     self.where("title LIKE ?", "%#{search_title}%")
   end

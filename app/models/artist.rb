@@ -27,6 +27,7 @@ class Artist < ApplicationRecord
   validates :age, presence: false
 
   has_one_attached :cover
+  
   def self.search(search_name)
     self.where("name LIKE ?", "%#{search_name}%")
   end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get ':resource', to: 'songs#index'
       patch 'progress', to: 'songs#update'
       get 'search', on: :collection
+      patch 'rating', to: 'songs#rating'
     end
     resources :artists, only: [:index, :show] do
       get ':resource', to: 'artists#show'
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
     resources :albums, only: [:index,:show]  do
       get ':resource', to: 'albums#show'
       get 'search', on: :collection
+      patch 'rating', to: 'albums#rating'
     end
   end
   

@@ -32,6 +32,8 @@ class Song < ApplicationRecord
   validate :progress_must_less_than_duration
   
   has_one_attached :cover
+  has_many :ratings, as: :ratingable
+
   # Requirement: The progress could not be bigger than the duration.
   def progress_must_less_than_duration
     if (self.progress > self.duration)

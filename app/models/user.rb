@@ -31,6 +31,8 @@ class User < ApplicationRecord
   has_many :albums
   has_many :artists  
 
+  after_create :welcome, :created
+
   def self.from_omniauth(auth)
     puts auth.to_json
     where(email: auth.info.email).first_or_create do |user|
@@ -41,6 +43,18 @@ class User < ApplicationRecord
 
   def admin? 
     self.role == "admin"
+  end
+
+  def welcome
+    UserMailer.with(
+      user: self
+    ).user_welcome.deliver_later
+  end
+
+  def created
+    User.where(role: "admin").each do |user|
+      UserMailer.with(user: user) .user_created.deliver_later
+    end
   end
 
 end
