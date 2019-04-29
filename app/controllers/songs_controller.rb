@@ -1,13 +1,13 @@
-class Admin::RatingsController < ApplicationController
-  def create
-    @rating = Rating.new(rating_params)
-    if @rating.save
-      redirect_to[@rating.ratingable], notice: 'Rating created'
-    else
-      render :new
-    end
+class SongsController < ApplicationController
+
+  def index
+    @songs = Song.all
   end
 
+  def show
+    @song = Song.find(params[:id])
+  end
+  
   def rating
     @song = Song.find(params[:id])
     if !@song.ratings.where(user_id: current_user.id).any?
@@ -23,12 +23,6 @@ class Admin::RatingsController < ApplicationController
         @rating.save
       end
     end
-    redirect_to songs_path(@song), notice: 'You already voted!'
-  end
-
-  private
-
-  def rating_params
-    params.require(:rating).permite(:user_id, :value, :ratingable_id, :ratingable_type, :rating)
+    redirect_to songs_path
   end
 end

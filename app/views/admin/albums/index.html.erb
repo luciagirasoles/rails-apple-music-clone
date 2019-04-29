@@ -5,6 +5,12 @@
 <br>
 <div>
   <% @albums.each do |album| %>
+    <td>
+    <div>
+      <% if album.cover.attached? %>
+        <%= image_tag album.cover.variant(resize: "500x500") %>
+      <% end %>
+  </td> 
     <div>
       <h4><%= album.title %></h4>
       <%= link_to '+ Add artist with song', add_record_admin_album_path(album), class: "small-text" %>

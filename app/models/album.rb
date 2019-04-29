@@ -35,5 +35,13 @@ class Album < ApplicationRecord
   def self.search(search_title)
     self.where("title LIKE ?", "%#{search_title}%")
   end
+
+  def like?(user)
+    ratings.where(user_id: user.id, value: 1).any?
+  end
+
+   def unlike?(user)
+    ratings.where(user_id: user.id, value: -1).any?
+  end
   
 end

@@ -6,6 +6,7 @@
 <table>
   <thead>
     <tr>
+      <th>Photo</th>
       <th>Name</th>
       <th>Age</th>
       <th>Actions</th>
@@ -14,6 +15,12 @@
   <tbody>
     <% @artists.each do |artist|%>
         <tr>
+          <td>
+            <div>
+              <% if artist.cover.attached? %>
+                <%= image_tag artist.cover.variant(resize: "300x200") %>
+              <% end %>
+          </td> 
           <td><%= artist.name %></td>
           <td><%= artist.age %></td>
           <td>
