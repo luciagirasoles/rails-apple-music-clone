@@ -1,0 +1,8 @@
+<h2>Welcome <%= @user.username %></h2>
+<p>We have some suggestions for you</p>
+<ul>
+<% @songs.each do |song| %>
+  <li><%= song.title %></li>
+<% end %>
+</ul>
+<div>Welcome to Apple family</div>

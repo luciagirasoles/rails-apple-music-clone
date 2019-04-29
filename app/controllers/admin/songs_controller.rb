@@ -20,8 +20,10 @@ class Admin::SongsController < ApplicationController
 
   
   def create
-    authorize @song
+    # authorize @song
     @song = Song.new(song_params)
+    @song = current_user.songs.create(song_params)
+
     if @song.save
       redirect_to admin_song_path(@song), notice: 'song was successfully created.'
     else

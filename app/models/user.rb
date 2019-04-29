@@ -27,8 +27,8 @@ class User < ApplicationRecord
   validates :role, inclusion: { in: %w(user admin)}
 
   devise :omniauthable, omniauth_providers: %i[facebook github]
-  has_many :songs
-  has_many :albums
+  has_many :songs, join_table: 'associations'
+  has_many :albums, join_table: 'associations'
   has_many :artists  
 
   after_create :welcome, :created

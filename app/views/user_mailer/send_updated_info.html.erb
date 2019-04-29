@@ -1,0 +1,8 @@
+<h2>Hi <%= @user.username %></h2>
+<ul>
+<% @data.each do |row| %>
+  <li><%= row.class.to_s != "Artist" ? row.title : row.name %></li>
+<% end %>
+</ul>
+<p>Hot Apple Music Trending</p>
+<div>Get a 50% discount in April & May with your Student ID</div>

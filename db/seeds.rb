@@ -1,5 +1,3 @@
-p "Starting db seeding"
-
 User.create(email: "diegotc86+1@gmail.com", password: "123456")
 User.create(email: "iamdeyvi+1@gmail.com", password: "123456")
 User.create(email: "cayala.w+1@gmail.com", password: "123456")
